@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zoetze — ambachtelijke themataarten, cupcakes, numbercakes en gepersonaliseerd gebak op maat gemaakt in Oudenaarde. Bestel nu voor elke gelegenheid!">
+    <meta name="keywords" content="taarten, cupcakes, numbercakes, dessertbuffet, Oudenaarde, gebak, themataarten, Zoetze">
+    <meta name="author" content="Zoetze">
+    <meta property="og:title" content="Zoetze — Ambachtelijk Gebak uit Oudenaarde">
+    <meta property="og:description" content="Handgemaakte themataarten, cupcakes en dessertbuffetten op maat. Bestel bij Zoetze!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.zoetze.be">
+    <title>Zoetze — Ambachtelijk Gebak | Oudenaarde</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <span class="preloader-spinner">🎂</span>
+        <p>Zoetze</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+            <a href="#hero" class="nav-logo"><img src="images/logo.jpeg" alt="Zoetze Logo"> <span>Zoetze</span></a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#beschikbaarheid">Beschikbaarheid</a></li>
+                <li><a href="#over">Over</a></li>
+                <li><a href="#assortiment">Assortiment</a></li>
+                <li><a href="galerij.html">Galerij</a></li>
+                <li><a href="dessertbuffet.html">Dessertbuffet</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="#contact">Bestellen</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" aria-label="Menu sluiten">&times;</button>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#beschikbaarheid">Beschikbaarheid</a></li>
+            <li><a href="#over">Over</a></li>
+            <li><a href="#assortiment">Assortiment</a></li>
+            <li><a href="galerij.html">Galerij</a></li>
+            <li><a href="dessertbuffet.html">Dessertbuffet</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="#contact">Bestellen</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content reveal">
+            <p class="subtitle" style="font-size:0.95rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;opacity:0.8;">Ambachtelijk gebak uit Oudenaarde</p>
+            <h1>Zoetze</h1>
+            <p class="subtitle">Ambachtelijke creaties, op maat gemaakt,<br>voor elke gelegenheid!</p>
+            <a href="#contact" class="hero-cta">Bestel nu</a>
+        </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Beschikbaarheid Section -->
+    <section id="beschikbaarheid" style="background-color: var(--color-blush); padding: 80px 0;">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 style="color: var(--color-rose-dark); font-family: var(--font-brand); font-size: 3rem; text-transform: none; letter-spacing: normal;">Beschikbaarheid</h2>
+            </div>
+            
+            <div class="availability-content reveal" style="display: flex; flex-direction: column; align-items: center; gap: 40px;">
+                <div class="availability-legend" style="text-align: center; font-size: 1.1rem; line-height: 2;">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                        <div><span style="display:inline-block; width:16px; height:16px; border-radius:50%; background:#4ade80; margin-right:8px; vertical-align:middle;"></span> groen = vrij</div>
+                        <div><span style="display:inline-block; width:16px; height:16px; border-radius:50%; background:#fbbf24; margin-right:8px; vertical-align:middle;"></span> oranje = laatste plekje</div>
+                        <div><span style="display:inline-block; width:16px; height:16px; border-radius:50%; background:#f87171; margin-right:8px; vertical-align:middle;"></span> rood = volzet</div>
+                    </div>
+                    <p style="margin-top: 24px; font-weight: 600; font-size: 1.2rem; max-width: 500px; color: var(--color-chocolate);">September-oktober-november zeer beperkt oww verbouwingswerken!</p>
+                </div>
+                
+                <div class="calendar-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px;">
+                    <!-- August -->
+                    <div class="calendar-month" style="background: white; padding: 20px; border-radius: 8px; box-shadow: var(--shadow-sm); width: 300px;">
+                        <h3 style="text-align: center; margin-bottom: 16px; font-size: 1rem; color: #333;">Augustus 2026</h3>
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 0.85rem;">
+                            <span style="font-weight:bold;color:#666;">Ma</span><span style="font-weight:bold;color:#666;">Di</span><span style="font-weight:bold;color:#666;">Wo</span><span style="font-weight:bold;color:#666;">Do</span><span style="font-weight:bold;color:#666;">Vr</span><span style="font-weight:bold;color:#666;">Za</span><span style="font-weight:bold;color:#666;">Zo</span>
+                            <span></span><span></span><span></span><span></span><span></span><span style="background:#f87171;color:white;padding:4px 0;">1</span><span style="background:#f87171;color:white;padding:4px 0;">2</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">3</span><span style="background:#f87171;color:white;padding:4px 0;">4</span><span style="background:#f87171;color:white;padding:4px 0;">5</span><span style="background:#f87171;color:white;padding:4px 0;">6</span><span style="background:#f87171;color:white;padding:4px 0;">7</span><span style="background:#f87171;color:white;padding:4px 0;">8</span><span style="background:#f87171;color:white;padding:4px 0;">9</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">10</span><span style="background:#f87171;color:white;padding:4px 0;">11</span><span style="background:#f87171;color:white;padding:4px 0;">12</span><span style="background:#f87171;color:white;padding:4px 0;">13</span><span style="background:#f87171;color:white;padding:4px 0;">14</span><span style="background:#f87171;color:white;padding:4px 0;">15</span><span style="background:#f87171;color:white;padding:4px 0;">16</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">17</span><span style="background:#f87171;color:white;padding:4px 0;">18</span><span style="background:#f87171;color:white;padding:4px 0;">19</span><span style="background:#f87171;color:white;padding:4px 0;">20</span><span style="background:#f87171;color:white;padding:4px 0;">21</span><span style="background:#4ade80;color:white;padding:4px 0;">22</span><span style="background:#f87171;color:white;padding:4px 0;">23</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">24</span><span style="background:#f87171;color:white;padding:4px 0;">25</span><span style="background:#f87171;color:white;padding:4px 0;">26</span><span style="background:#f87171;color:white;padding:4px 0;">27</span><span style="background:#f87171;color:white;padding:4px 0;">28</span><span style="background:#f87171;color:white;padding:4px 0;">29</span><span style="background:#f87171;color:white;padding:4px 0;">30</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">31</span>
+                        </div>
+                    </div>
+                    <!-- September -->
+                    <div class="calendar-month" style="background: white; padding: 20px; border-radius: 8px; box-shadow: var(--shadow-sm); width: 300px;">
+                        <h3 style="text-align: center; margin-bottom: 16px; font-size: 1rem; color: #333;">September 2026</h3>
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 0.85rem;">
+                            <span style="font-weight:bold;color:#666;">Ma</span><span style="font-weight:bold;color:#666;">Di</span><span style="font-weight:bold;color:#666;">Wo</span><span style="font-weight:bold;color:#666;">Do</span><span style="font-weight:bold;color:#666;">Vr</span><span style="font-weight:bold;color:#666;">Za</span><span style="font-weight:bold;color:#666;">Zo</span>
+                            <span></span><span style="background:#f87171;color:white;padding:4px 0;">1</span><span style="background:#f87171;color:white;padding:4px 0;">2</span><span style="background:#f87171;color:white;padding:4px 0;">3</span><span style="background:#f87171;color:white;padding:4px 0;">4</span><span style="background:#f87171;color:white;padding:4px 0;">5</span><span style="background:#f87171;color:white;padding:4px 0;">6</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">7</span><span style="background:#f87171;color:white;padding:4px 0;">8</span><span style="background:#f87171;color:white;padding:4px 0;">9</span><span style="background:#f87171;color:white;padding:4px 0;">10</span><span style="background:#f87171;color:white;padding:4px 0;">11</span><span style="background:#fbbf24;color:white;padding:4px 0;">12</span><span style="background:#f87171;color:white;padding:4px 0;">13</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">14</span><span style="background:#f87171;color:white;padding:4px 0;">15</span><span style="background:#f87171;color:white;padding:4px 0;">16</span><span style="background:#f87171;color:white;padding:4px 0;">17</span><span style="background:#f87171;color:white;padding:4px 0;">18</span><span style="background:#f87171;color:white;padding:4px 0;">19</span><span style="background:#f87171;color:white;padding:4px 0;">20</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">21</span><span style="background:#f87171;color:white;padding:4px 0;">22</span><span style="background:#f87171;color:white;padding:4px 0;">23</span><span style="background:#f87171;color:white;padding:4px 0;">24</span><span style="background:#f87171;color:white;padding:4px 0;">25</span><span style="background:#f87171;color:white;padding:4px 0;">26</span><span style="background:#f87171;color:white;padding:4px 0;">27</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">28</span><span style="background:#f87171;color:white;padding:4px 0;">29</span><span style="background:#f87171;color:white;padding:4px 0;">30</span>
+                        </div>
+                    </div>
+                    <!-- Oktober -->
+                    <div class="calendar-month" style="background: white; padding: 20px; border-radius: 8px; box-shadow: var(--shadow-sm); width: 300px;">
+                        <h3 style="text-align: center; margin-bottom: 16px; font-size: 1rem; color: #333;">Oktober 2026</h3>
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 0.85rem;">
+                            <span style="font-weight:bold;color:#666;">Ma</span><span style="font-weight:bold;color:#666;">Di</span><span style="font-weight:bold;color:#666;">Wo</span><span style="font-weight:bold;color:#666;">Do</span><span style="font-weight:bold;color:#666;">Vr</span><span style="font-weight:bold;color:#666;">Za</span><span style="font-weight:bold;color:#666;">Zo</span>
+                            <span></span><span></span><span></span><span style="background:#f87171;color:white;padding:4px 0;">1</span><span style="background:#f87171;color:white;padding:4px 0;">2</span><span style="background:#f87171;color:white;padding:4px 0;">3</span><span style="background:#f87171;color:white;padding:4px 0;">4</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">5</span><span style="background:#f87171;color:white;padding:4px 0;">6</span><span style="background:#f87171;color:white;padding:4px 0;">7</span><span style="background:#f87171;color:white;padding:4px 0;">8</span><span style="background:#f87171;color:white;padding:4px 0;">9</span><span style="background:#f87171;color:white;padding:4px 0;">10</span><span style="background:#f87171;color:white;padding:4px 0;">11</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">12</span><span style="background:#f87171;color:white;padding:4px 0;">13</span><span style="background:#f87171;color:white;padding:4px 0;">14</span><span style="background:#f87171;color:white;padding:4px 0;">15</span><span style="background:#f87171;color:white;padding:4px 0;">16</span><span style="background:#fbbf24;color:white;padding:4px 0;">17</span><span style="background:#f87171;color:white;padding:4px 0;">18</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">19</span><span style="background:#f87171;color:white;padding:4px 0;">20</span><span style="background:#f87171;color:white;padding:4px 0;">21</span><span style="background:#f87171;color:white;padding:4px 0;">22</span><span style="background:#f87171;color:white;padding:4px 0;">23</span><span style="background:#fbbf24;color:white;padding:4px 0;">24</span><span style="background:#f87171;color:white;padding:4px 0;">25</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">26</span><span style="background:#f87171;color:white;padding:4px 0;">27</span><span style="background:#f87171;color:white;padding:4px 0;">28</span><span style="background:#f87171;color:white;padding:4px 0;">29</span><span style="background:#f87171;color:white;padding:4px 0;">30</span><span style="background:#f87171;color:white;padding:4px 0;">31</span><span></span>
+                        </div>
+                    </div>
+                    <!-- November -->
+                    <div class="calendar-month" style="background: white; padding: 20px; border-radius: 8px; box-shadow: var(--shadow-sm); width: 300px;">
+                        <h3 style="text-align: center; margin-bottom: 16px; font-size: 1rem; color: #333;">November 2026</h3>
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 0.85rem;">
+                            <span style="font-weight:bold;color:#666;">Ma</span><span style="font-weight:bold;color:#666;">Di</span><span style="font-weight:bold;color:#666;">Wo</span><span style="font-weight:bold;color:#666;">Do</span><span style="font-weight:bold;color:#666;">Vr</span><span style="font-weight:bold;color:#666;">Za</span><span style="font-weight:bold;color:#666;">Zo</span>
+                            <span></span><span></span><span></span><span></span><span></span><span></span><span style="background:#f87171;color:white;padding:4px 0;">1</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">2</span><span style="background:#f87171;color:white;padding:4px 0;">3</span><span style="background:#f87171;color:white;padding:4px 0;">4</span><span style="background:#f87171;color:white;padding:4px 0;">5</span><span style="background:#f87171;color:white;padding:4px 0;">6</span><span style="background:#fbbf24;color:white;padding:4px 0;">7</span><span style="background:#fbbf24;color:white;padding:4px 0;">8</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">9</span><span style="background:#f87171;color:white;padding:4px 0;">10</span><span style="background:#f87171;color:white;padding:4px 0;">11</span><span style="background:#f87171;color:white;padding:4px 0;">12</span><span style="background:#f87171;color:white;padding:4px 0;">13</span><span style="background:#fbbf24;color:white;padding:4px 0;">14</span><span style="background:#fbbf24;color:white;padding:4px 0;">15</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">16</span><span style="background:#f87171;color:white;padding:4px 0;">17</span><span style="background:#f87171;color:white;padding:4px 0;">18</span><span style="background:#f87171;color:white;padding:4px 0;">19</span><span style="background:#f87171;color:white;padding:4px 0;">20</span><span style="background:#fbbf24;color:white;padding:4px 0;">21</span><span style="background:#fbbf24;color:white;padding:4px 0;">22</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">23</span><span style="background:#f87171;color:white;padding:4px 0;">24</span><span style="background:#f87171;color:white;padding:4px 0;">25</span><span style="background:#f87171;color:white;padding:4px 0;">26</span><span style="background:#f87171;color:white;padding:4px 0;">27</span><span style="background:#fbbf24;color:white;padding:4px 0;">28</span><span style="background:#fbbf24;color:white;padding:4px 0;">29</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">30</span>
+                        </div>
+                    </div>
+                    <!-- December -->
+                    <div class="calendar-month" style="background: white; padding: 20px; border-radius: 8px; box-shadow: var(--shadow-sm); width: 300px;">
+                        <h3 style="text-align: center; margin-bottom: 16px; font-size: 1rem; color: #333;">December 2026</h3>
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 0.85rem;">
+                            <span style="font-weight:bold;color:#666;">Ma</span><span style="font-weight:bold;color:#666;">Di</span><span style="font-weight:bold;color:#666;">Wo</span><span style="font-weight:bold;color:#666;">Do</span><span style="font-weight:bold;color:#666;">Vr</span><span style="font-weight:bold;color:#666;">Za</span><span style="font-weight:bold;color:#666;">Zo</span>
+                            <span></span><span style="background:#f87171;color:white;padding:4px 0;">1</span><span style="background:#f87171;color:white;padding:4px 0;">2</span><span style="background:#f87171;color:white;padding:4px 0;">3</span><span style="background:#f87171;color:white;padding:4px 0;">4</span><span style="background:#f87171;color:white;padding:4px 0;">5</span><span style="background:#f87171;color:white;padding:4px 0;">6</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">7</span><span style="background:#f87171;color:white;padding:4px 0;">8</span><span style="background:#f87171;color:white;padding:4px 0;">9</span><span style="background:#f87171;color:white;padding:4px 0;">10</span><span style="background:#f87171;color:white;padding:4px 0;">11</span><span style="background:#fbbf24;color:white;padding:4px 0;">12</span><span style="background:#f87171;color:white;padding:4px 0;">13</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">14</span><span style="background:#f87171;color:white;padding:4px 0;">15</span><span style="background:#f87171;color:white;padding:4px 0;">16</span><span style="background:#f87171;color:white;padding:4px 0;">17</span><span style="background:#f87171;color:white;padding:4px 0;">18</span><span style="background:#f87171;color:white;padding:4px 0;">19</span><span style="background:#f87171;color:white;padding:4px 0;">20</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">21</span><span style="background:#f87171;color:white;padding:4px 0;">22</span><span style="background:#f87171;color:white;padding:4px 0;">23</span><span style="background:#f87171;color:white;padding:4px 0;">24</span><span style="background:#f87171;color:white;padding:4px 0;">25</span><span style="background:#f87171;color:white;padding:4px 0;">26</span><span style="background:#f87171;color:white;padding:4px 0;">27</span>
+                            <span style="background:#f87171;color:white;padding:4px 0;">28</span><span style="background:#f87171;color:white;padding:4px 0;">29</span><span style="background:#f87171;color:white;padding:4px 0;">30</span><span style="background:#f87171;color:white;padding:4px 0;">31</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <a href="#contact" class="hero-cta" style="background-color: var(--color-rose-dark); color: white; padding: 12px 48px; border-radius: 4px; font-weight: normal; font-size: 1.1rem; box-shadow: none;">Bestellen!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Over (About) Section -->
+    <section id="over">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image reveal">
+                    <img src="Menu image/unnamed (1).jpg" alt="Elegante taart door Zoetze" loading="lazy">
+                </div>
+                <div class="about-text reveal" data-delay="200">
+                    <h2>Over Zoetze</h2>
+                    <p>Zoetze biedt u een waaier aan gepersonaliseerde taarten, cupcakes en andere lekkernijen voor elke gelegenheid. Wij staan garant voor authentiek gebak; gemaakt met veel passie, liefde en alleen de beste producten!</p>
+                    <p>Hoi! Ik ben <strong>Ellen</strong>, het gezicht achter Zoetze!</p>
+                    <p>Samen met mijn gezin woon ik in Oudenaarde. Ik ben mama van 2 prachtige dochters en getrouwd met de beste!</p>
+                    <p>Al sinds ik een klein meisje was, hielp ik mijn papa bij het bakken van een cake, of opa bij de wafels. Toen ik zwanger was van onze oudste dochter, kreeg ik de bakmicrobe helemaal te pakken.</p>
+                    <p>Na jaren te bakken voor vrienden en familie, kan ik nu mijn passie voor gebak combineren met prachtige creaties voor elke gelegenheid!</p>
+                    <p><em>Veel groetjes & zoetzes,</em></p>
+                    <p><strong style="font-family:var(--font-heading);font-size:1.4rem;color:var(--color-gold);">Ellen</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Assortiment Section -->
+        <section id="assortiment" style="background-color: #f7f7f7; padding: 80px 0;">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 style="font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0;">Onze bestsellers</h2>
+            </div>
+            
+            <div class="bestsellers-grid">
+                <a href="themataarten.html" class="bestseller-card reveal" data-delay="0">
+                    <div class="bestseller-image">
+                        <img src="images/gallery/themataarten/themataarten_1.jpeg" alt="Themataarten" loading="lazy">
+                    </div>
+                    <div class="bestseller-info">
+                        <h3>Themataarten</h3>
+                        <p>vanaf 65 euro</p>
+                    </div>
+                </a>
+
+                <a href="cupcakes.html" class="bestseller-card reveal" data-delay="100">
+                    <div class="bestseller-image">
+                        <img src="images/gallery/cupcakes/cupcakes_1.jpg" alt="Cupcakes" loading="lazy">
+                    </div>
+                    <div class="bestseller-info">
+                        <h3>Cupcakes</h3>
+                        <p>vanaf 21 euro</p>
+                    </div>
+                </a>
+
+                <a href="dessertbuffet.html" class="bestseller-card reveal" data-delay="200">
+                    <div class="bestseller-image">
+                        <img src="images/gallery/general-7/general-7_5.jpeg" alt="Dessertbuffet" loading="lazy">
+                    </div>
+                    <div class="bestseller-info">
+                        <h3>Dessertbuffet</h3>
+                        <p>vanaf 20 personen</p>
+                    </div>
+                </a>
+
+                <a href="numbercake.html" class="bestseller-card reveal" data-delay="300">
+                    <div class="bestseller-image">
+                        <img src="images/gallery/numbercake/numbercake_1.jpeg" alt="Numbercakes" loading="lazy">
+                    </div>
+                    <div class="bestseller-info">
+                        <h3>Numbercakes</h3>
+                        <p>vanaf 65 euro</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerij (Gallery) Section -->
+    <section id="galerij">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Galerij</h2>
+                <p>Bekijk een selectie van onze handgemaakte meesterwerken</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal" data-delay="0">
+                    <img src="images/gallery/themataarten/themataarten_1.jpeg" alt="Themataarten Zoetze" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">⊕</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal" data-delay="100">
+                    <img src="images/gallery/cupcakes/cupcakes_1.jpg" alt="Cupcakes Zoetze" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">⊕</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal" data-delay="200">
+                    <img src="images/gallery/numbercake/numbercake_1.jpeg" alt="Numbercake Zoetze" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">⊕</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal" data-delay="0">
+                    <img src="images/gallery/general-7/general-7_1.jpg" alt="Sweetbox Zoetze" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">⊕</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal" data-delay="100">
+                    <img src="images/gallery/themataarten/themataarten_3.jpg" alt="Themataarten Zoetze" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">⊕</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal" data-delay="200">
+                    <img src="images/gallery/numbercake/numbercake_2.jpg" alt="Numbercake Zoetze" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">⊕</span>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;" class="reveal">
+                <a href="galerij.html" class="btn-outline" style="display: inline-block;">Bekijk volledige galerij</a>
+            </div>
+        </div>
+    </section>
+
+<!-- Dessertbuffet Section -->
+    <section id="dessertbuffet">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Dessertbuffet</h2>
+                <p>Perfect als zoete afsluiter van een familielunch, communie, babyborrel of trouwfeest.</p>
+            </div>
+            
+            <div class="buffet-intro reveal" data-delay="100">
+                <p>Stel je dessertbuffet volledig zelf samen: kies jouw favoriete desserts en gebakjes en bepaal het thema of kleurenpalet dat bij jouw feest past. Alles wordt vooraf zorgvuldig afgestemd via mail. Het buffet stel je zelf op, maar indien gewenst kan je presentatiemateriaal huren aan een kleine meerprijs van 25 euro (+ 50 euro borg). Alle desserts worden aangeboden in individuele porties.</p>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;" class="reveal">
+                <a href="dessertbuffet.html" class="btn-outline">Meer info & Prijzen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <div class="container">
+            <div class="section-header reviews-header reveal">
+                <h2>Onze Klanten</h2>
+                <div class="rating-display">
+                    <span class="rating-stars">★★★★★</span>
+                    <span class="rating-score">5.0</span>
+                    <span class="review-date">Google Reviews</span>
+                </div>
+            </div>
+            <div class="reviews-carousel" id="reviewsCarousel">
+                <button class="carousel-arrow carousel-prev" aria-label="Vorige review">‹</button>
+                <div class="reviews-track" id="reviewsTrack">
+                    <div class="review-card">
+                        <div class="review-date">★★★★★</div>
+                        <blockquote class="review-text">
+                            &ldquo;Zeer tevreden! Heel lekkere taarten, mooi en creatief versierd. Vriendelijke service.&rdquo;
+                        </blockquote>
+                        <div class="review-author">Birgit Niemegeers</div>
+                        <div class="review-date">Lokale gids · 79 beoordelingen</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-date">★★★★★</div>
+                        <blockquote class="review-text">
+                            &ldquo;Heerlijke en prachtige cupcakes, heel vriendelijke en professionele bediening, vlekkeloze communicatie.&rdquo;
+                        </blockquote>
+                        <div class="review-author">Femke Mortier</div>
+                        <div class="review-date">5 beoordelingen</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-date">★★★★★</div>
+                        <blockquote class="review-text">
+                            &ldquo;Ik ben heel tevreden. De taart was precies zoals ik besteld had en ongelooflijk lekker 😍🤤. De eigenares was heel vriendelijk. Ik kom hier in de toekomst zeker terug!&rdquo;
+                        </blockquote>
+                        <div class="review-author">Petra Nic</div>
+                        <div class="review-date">1 beoordeling</div>
+                    </div>
+                </div>
+                <button class="carousel-arrow carousel-next" aria-label="Volgende review">›</button>
+            </div>
+            <div class="carousel-dots" id="carouselDots">
+                <button class="carousel-dot active" data-index="0" aria-label="Review 1"></button>
+                <button class="carousel-dot" data-index="1" aria-label="Review 2"></button>
+                <button class="carousel-dot" data-index="2" aria-label="Review 3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Veelgestelde Vragen</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item reveal" data-delay="0">
+                    <button class="faq-question" aria-expanded="false">
+                        <h3>Hoe kan ik bestellen?</h3>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Bestellen kan via het contactformulier op deze pagina of via Facebook. Bestellingen via Instagram, mail of andere kanalen worden niet aangenomen.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" data-delay="50">
+                    <button class="faq-question" aria-expanded="false">
+                        <h3>Waar kan ik mijn bestelling afhalen?</h3>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>U kan uw bestelling afhalen op volgend adres: <strong>Boterbloemstraat 2, 9700 Oudenaarde</strong>. Gelieve u zo veel mogelijk te houden aan het afgesproken afhaalmoment!</p>
+                        <p>⚠️ Let op: onze straat is enkel bereikbaar via de Heurnestraat-Klaproosstraat!</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" data-delay="100">
+                    <button class="faq-question" aria-expanded="false">
+                        <h3>Bezorgen jullie ook?</h3>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Leveringen aan huis of op locatie kan enkel bij grote bestellingen en gebeurt in samenspraak met Zoetze. Neem hiervoor contact op via het formulier.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" data-delay="150">
+                    <button class="faq-question" aria-expanded="false">
+                        <h3>Hoelang op voorhand moet ik bestellen?</h3>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Gelieve uw bestelling ruim op tijd door te geven — minstens 3 tot 4 weken op voorhand. De beschikbaarheidskalender vindt u op de startpagina.</p>
+                        <p>Weet u nog niet precies wat u wilt? Geen probleem! Leg uw datum alvast vast. Alle taarten worden door mijzelf gemaakt, daar kruipt veel tijd en liefde in.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" data-delay="200">
+                    <button class="faq-question" aria-expanded="false">
+                        <h3>Hoe verloopt de betaling?</h3>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Bij het plaatsen van uw bestelling wordt u gevraagd een voorschot te storten binnen de week. Uw bestelling is pas definitief nadat Zoetze uw betaling heeft ontvangen.</p>
+                        <p>Het resterende bedrag kan worden voldaan bij afhaling — cash of met Payconiq.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" data-delay="250">
+                    <button class="faq-question" aria-expanded="false">
+                        <h3>Kan ik een bestelling annuleren?</h3>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Tot 2 weken voor de datum: volledige terugbetaling van het voorschot. Tussen 2 weken en 3 dagen: 50% van het bedrag wordt in rekening gebracht. Minder dan 3 dagen: geen terugbetaling.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal" data-delay="300">
+                    <button class="faq-question" aria-expanded="false">
+                        <h3>Wat met allergenen?</h3>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>De producten van Zoetze kunnen o.a. volgende stoffen bevatten: kippenei, gluten, koemelk, lactose, noten, pinda's, soja, tarwe, chocolade, vanille, fruit en diverse kleurstoffen.</p>
+                        <p>Meer info over de ingrediënten van jouw gekozen product kan je verkrijgen via het contactformulier.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Bestellen</h2>
+                <p>Vul het formulier in en wij nemen zo snel mogelijk contact met u op</p>
+            </div>
+            <div class="contact-grid">
+                <div class="reveal">
+                    <form class="contact-form" id="contactForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Naam *</label>
+                                <input type="text" id="name" name="name" placeholder="Uw volledige naam" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail *</label>
+                                <input type="email" id="email" name="email" placeholder="uw@email.be" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Telefoon *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+32 ..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Datum waarop je de bestelling nodig hebt *</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="biscuit">Bij taart: smaak van de biscuit</label>
+                                <select id="biscuit" name="biscuit">
+                                    <option value="">Maak een keuze...</option>
+                                    <option value="gewone biscuit (vanille)">gewone biscuit (vanille)</option>
+                                    <option value="chocoladebiscuit">chocoladebiscuit</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vulling">Bij taart: smaak van de vulling</label>
+                                <select id="vulling" name="vulling">
+                                    <option value="">Maak een keuze...</option>
+                                    <option value="chocolademousse">chocolademousse</option>
+                                    <option value="chocolademousse met frambozen">chocolademousse met frambozen</option>
+                                    <option value="frambozenmousse">frambozenmousse</option>
+                                    <option value="vanilleroom">vanilleroom</option>
+                                    <option value="bananenroom">bananenroom</option>
+                                    <option value="aardbeienroom">aardbeienroom</option>
+                                    <option value="bueno">bueno</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="custom_name_age">Eventueel naam en leeftijd indien te vermelden</label>
+                            <input type="text" id="custom_name_age" name="custom_name_age" placeholder="Bijv. Sarah, 5 jaar">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Omschrijving - wat wil jij graag bestellen? *</label>
+                            <textarea id="message" name="message" placeholder="Geef zoveel mogelijk details door: soort bestelling (taart, cupcakes,...) - aantal personen - thema - soort decoratie - evt taarttopper - ..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">Verstuur bestelling</button>
+                    </form>
+                    <div class="form-success" id="formSuccess">
+                        <div class="success-icon">✓</div>
+                        <h3>Bedankt voor uw bestelling!</h3>
+                        <p>We hebben uw bericht ontvangen en nemen zo snel mogelijk contact met u op. Uw bestelling is pas definitief na bevestiging.</p>
+                    </div>
+                </div>
+                <div class="contact-info reveal" data-delay="200">
+                    <div class="info-card">
+                        <h3>Contactgegevens</h3>
+                        <div class="info-item">
+                            <span class="info-icon">📍</span>
+                            <div>
+                                <strong>Adres</strong>
+                                <p>Boterbloemstraat 2<br>9700 Oudenaarde</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">⚠️</span>
+                            <div>
+                                <p>Onze straat is enkel bereikbaar via de Heurnestraat-Klaproosstraat!</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📦</span>
+                            <div>
+                                <strong>Afhalen</strong>
+                                <p>Enkel op afspraak</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">💳</span>
+                            <div>
+                                <strong>Betaling</strong>
+                                <p>Cash of Payconiq</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Boterbloemstraat+2,+9700+Oudenaarde,+Belgium&output=embed"
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Zoetze locatie op kaart">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="#hero" class="footer-logo">Zoetze</a>
+                <p class="footer-tagline">Ambachtelijke creaties, op maat gemaakt</p>
+                <div class="footer-links">
+                    <a href="#over">Over</a>
+                    <a href="#assortiment">Assortiment</a>
+                    <a href="galerij.html">Galerij</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-legal">
+                    <p>© 2026 Zoetze. Alle rechten voorbehouden.</p>
+                    <p>BTW BE0758581867</p>
+                    <div style="margin-top: 12px; display:flex; justify-content:center; gap: 16px;">
+                        <a href="algemene-voorwaarden.html" style="text-decoration: underline;">Algemene voorwaarden</a>
+                        <a href="privacy-policy.html" style="text-decoration: underline;">Privacy policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Sluiten">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Vorige foto">‹</button>
+        <img id="lightboxImage" src="" alt="Galerij foto">
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Volgende foto">›</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

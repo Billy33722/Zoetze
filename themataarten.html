@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zoetze — ambachtelijke themataarten op maat gemaakt in Oudenaarde.">
+    <title>Zoetze — Themataarten | Oudenaarde</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Staggered Grid Layout for Product Details */
+        .staggered-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 960px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .staggered-col {
+            display: flex;
+            flex-direction: column;
+        }
+        .staggered-col.left-col {
+            padding-right: 16px;
+        }
+        .staggered-col.right-col {
+            padding-left: 16px;
+            margin-top: 100px; /* Stagger effect */
+        }
+        .staggered-card {
+            background: var(--color-white);
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            overflow: hidden;
+            margin-bottom: 40px; /* Spacing between stacked elements */
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .staggered-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Overlaps matching user sketch */
+        #card-1 {
+            z-index: 1;
+            margin-bottom: -50px; /* Card 3 overlaps Card 1 */
+            margin-right: -25px;  /* Card 2/4 overlaps Card 1 horizontally */
+        }
+        #card-2 {
+            z-index: 2;
+            margin-bottom: -50px; /* Card 4 overlaps Card 2 */
+            margin-left: -25px;   /* Overlaps Card 1/3 horizontally */
+            padding-left: 56px;   /* Shift text to the right to clear overlap */
+        }
+        #card-3 {
+            z-index: 3;
+            margin-right: -25px;  /* Overlaps Card 2, overlapped by Card 4 */
+            padding-right: 56px;  /* Shift text to the left to clear overlap */
+        }
+        #card-4 {
+            z-index: 4;
+            margin-left: -25px;   /* Overlaps Card 3 and Card 2 */
+        }
+
+        .staggered-card.image-card {
+            aspect-ratio: 3 / 4;
+        }
+        .staggered-card.image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .staggered-card.text-card {
+            padding: 40px;
+            background: #fdfaf7;
+            border: 1px solid rgba(223, 203, 211, 0.25);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Mobile adaptation */
+        @media (max-width: 768px) {
+            .staggered-showcase {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .staggered-col.right-col {
+                margin-top: 0;
+                padding-left: 0;
+            }
+            .staggered-col.left-col {
+                padding-right: 0;
+            }
+            .staggered-card {
+                margin-bottom: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                aspect-ratio: auto !important;
+            }
+            .staggered-card.image-card {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <span class="preloader-spinner">🎂</span>
+        <p>Zoetze</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+            <a href="index.html#hero" class="nav-logo"><img src="images/logo.jpeg" alt="Zoetze Logo"> <span>Zoetze</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#beschikbaarheid">Beschikbaarheid</a></li>
+                <li><a href="index.html#over">Over</a></li>
+                <li><a href="index.html#assortiment">Assortiment</a></li>
+                <li><a href="galerij.html">Galerij</a></li>
+                <li><a href="dessertbuffet.html">Dessertbuffet</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="index.html#contact">Bestellen</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" aria-label="Menu sluiten">&times;</button>
+        <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#beschikbaarheid">Beschikbaarheid</a></li>
+            <li><a href="index.html#over">Over</a></li>
+            <li><a href="index.html#assortiment">Assortiment</a></li>
+            <li><a href="galerij.html">Galerij</a></li>
+            <li><a href="dessertbuffet.html">Dessertbuffet</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="index.html#contact">Bestellen</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero specific for page -->
+    <section class="page-hero" style="padding-top: 150px; padding-bottom: 60px; background-color: var(--color-cream); text-align: center;">
+        <div class="container reveal">
+            <h1 style="font-family: var(--font-brand); font-size: 3.5rem; color: var(--color-rose-dark); margin-bottom: 20px;">Themataarten</h1>
+            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: #555;">Een themataart, helemaal aangepast aan jouw wensen? Vraag gerust naar de mogelijkheden!</p>
+        </div>
+    </section>
+
+    <!-- Details Section (Staggered Stacking Layout) -->
+    <section class="page-section" style="padding: 80px 0; background-color: #faf6f6;">
+        <div class="container">
+            <div class="staggered-showcase reveal">
+                
+                <!-- Left Column -->
+                <div class="staggered-col left-col">
+                    
+                    <!-- Card 1: Image (O) -->
+                    <div class="staggered-card image-card" id="card-1">
+                        <img src="images/gallery/themataarten/wix/wix_taart_1.jpeg" alt="Themataart Zoetze" loading="lazy">
+                    </div>
+                    
+                    <!-- Card 3: Text (T) -->
+                    <div class="staggered-card text-card" id="card-3">
+                        <h3 style="font-family: var(--font-brand); font-size: 2rem; color: var(--color-rose-dark); margin-bottom: 16px;">Tarieven</h3>
+                        <p style="font-size: 0.95rem; margin-bottom: 20px; color: #555; line-height: 1.6;">Custom taarten zijn te bestellen vanaf 10 personen. Enkele richtprijzen:</p>
+                        
+                        <ul class="product-list" style="font-size: 1rem; margin-bottom: 24px; list-style-type: '🧁 '; padding-left: 20px;">
+                            <li style="margin-bottom: 10px;">10 personen: vanaf <strong>€65</strong></li>
+                            <li style="margin-bottom: 10px;">12 personen: vanaf <strong>€75</strong></li>
+                            <li style="margin-bottom: 10px;">14 personen: vanaf <strong>€90</strong></li>
+                        </ul>
+                        
+                        <div style="background-color: var(--color-blush); padding: 20px; border-radius: 16px; font-size: 0.85rem; color: #666; line-height: 1.6;">
+                            <p style="margin-bottom: 8px;"><strong>Inbegrepen:</strong> naam, leeftijd en 1 basisdecoratie (kleine fondantversiering, 1 eetbare afbeelding of drip).</p>
+                            <p style="margin-bottom: 8px;"><strong>Meerprijs:</strong> extra eetbare afbeeldingen, macarons, verse bloemen, speelgoedfiguurtjes.</p>
+                            <p style="margin-bottom: 8px;"><strong>Geboetseerde figuren:</strong> vanaf €6/st, afhankelijk van het ontwerp.</p>
+                            <p style="margin-bottom: 0;"><strong>Meptaart:</strong> bijpassende meptaart kan besteld worden voor €10/st.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column -->
+                <div class="staggered-col right-col">
+                    
+                    <!-- Card 2: Text (T) -->
+                    <div class="staggered-card text-card" id="card-2">
+                        <h3 style="font-family: var(--font-brand); font-size: 2rem; color: var(--color-rose-dark); margin-bottom: 16px;">Biscuit & Vullingen</h3>
+                        <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; color: #555;">
+                            Taarten worden standaard afgewerkt met lekkere botercrème. Suikerpasta wordt enkel nog gebruikt voor de decoratieve details.<br>
+                            U heeft keuze uit een basis van <strong>luchtige biscuit</strong> of <strong>chocoladebiscuit</strong>.
+                        </p>
+                        
+                        <h4 style="font-family: var(--font-heading); font-size: 1.15rem; color: var(--color-chocolate); margin-bottom: 12px;">Kies 1 soort vulling per taart:</h4>
+                        <ul class="product-list" style="font-size: 0.95rem; list-style-type: '✨ '; padding-left: 20px; line-height: 1.8;">
+                            <li>chocolademousse</li>
+                            <li>chocolademousse met frambozen</li>
+                            <li>frambozenmousse</li>
+                            <li>vanilleroom</li>
+                            <li>aardbeienroom</li>
+                            <li>bananenroom</li>
+                            <li>bueno vulling</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 4: Image (O) -->
+                    <div class="staggered-card image-card" id="card-4">
+                        <img src="images/gallery/themataarten/wix/wix_taart_2.jpeg" alt="Themataart Zoetze" loading="lazy">
+                    </div>
+
+                </div>
+
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;" class="reveal">
+                <a href="index.html#contact" class="btn-outline" style="padding: 16px 40px; font-size: 1.1rem; border-radius: 50px;">Offerte aanvragen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specific Gallery Section -->
+    <section class="page-section" style="padding-bottom: 100px;">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Inspiratie Themataarten</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_1.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_2.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_3.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_4.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_5.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_6.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_7.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_8.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_9.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_10.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_11.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                
+                <div class="gallery-item reveal"><img src="images/gallery/themataarten/wix/wix_taart_13.jpeg" alt="Themataart" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html#hero" class="footer-logo">Zoetze</a>
+                <p class="footer-tagline">Ambachtelijke creaties, op maat gemaakt</p>
+                <div class="footer-links">
+                    <a href="index.html#over">Over</a>
+                    <a href="index.html#assortiment">Assortiment</a>
+                    <a href="galerij.html">Galerij</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="footer-legal">
+                    <p>© 2026 Zoetze. Alle rechten voorbehouden.</p>
+                    <p>BTW BE0758581867</p>
+                    <div style="margin-top: 12px; display:flex; justify-content:center; gap: 16px;">
+                        <a href="algemene-voorwaarden.html" style="text-decoration: underline;">Algemene voorwaarden</a>
+                        <a href="privacy-policy.html" style="text-decoration: underline;">Privacy policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Sluiten">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Vorige foto">‹</button>
+        <img id="lightboxImage" src="" alt="Galerij foto">
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Volgende foto">›</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

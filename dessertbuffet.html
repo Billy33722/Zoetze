@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zoetze — ambachtelijke themataarten, cupcakes, numbercakes en gepersonaliseerd gebak op maat gemaakt in Oudenaarde. Bestel nu voor elke gelegenheid!">
+    <meta name="keywords" content="taarten, cupcakes, numbercakes, dessertbuffet, Oudenaarde, gebak, themataarten, Zoetze">
+    <meta name="author" content="Zoetze">
+    <meta property="og:title" content="Zoetze — Ambachtelijk Gebak uit Oudenaarde">
+    <meta property="og:description" content="Handgemaakte themataarten, cupcakes en dessertbuffetten op maat. Bestel bij Zoetze!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.zoetze.be">
+    <title>Zoetze — Ambachtelijk Gebak | Oudenaarde</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Buffet Tabs Styling */
+        .buffet-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--color-chocolate-light);
+            color: var(--color-chocolate);
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            backdrop-filter: blur(10px);
+        }
+        .tab-btn:hover {
+            background: var(--color-pink-light);
+            transform: translateY(-2px);
+        }
+        .tab-btn.active {
+            background: var(--color-chocolate);
+            color: var(--color-white);
+            border-color: var(--color-chocolate);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Tab Panes */
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Buffet Grid */
+        .buffet-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 992px) {
+            .buffet-details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .buffet-info-card, .buffet-structure-card {
+            background: var(--color-white);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(139, 90, 60, 0.08);
+        }
+
+        .buffet-info-card h3, .buffet-structure-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--color-chocolate);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .buffet-info-card h3::after, .buffet-structure-card h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--color-pink);
+            margin-top: 8px;
+        }
+
+        .price-tag {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-chocolate);
+            margin-bottom: 10px;
+            font-family: var(--font-heading);
+        }
+        .price-tag small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--color-chocolate-light);
+        }
+        .price-note {
+            color: var(--color-chocolate-light);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .buffet-rules-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+        .buffet-rules-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            color: var(--color-chocolate-light);
+            line-height: 1.6;
+        }
+        .buffet-rules-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-pink);
+            font-weight: bold;
+        }
+
+        /* Selection Grid */
+        .category-selection-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .selection-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background: #faf6f4;
+            border-radius: var(--radius-md);
+            border: 1px dashed rgba(139, 90, 60, 0.15);
+        }
+        .selection-item .number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--color-chocolate);
+            color: var(--color-white);
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .selection-item.kids .number {
+            background: var(--color-pink);
+            font-size: 1.1rem;
+        }
+        .selection-item h4 {
+            margin: 0 0 4px;
+            color: var(--color-chocolate);
+            font-size: 1.1rem;
+        }
+        .selection-item p {
+            margin: 0;
+            color: var(--color-chocolate-light);
+            font-size: 0.9rem;
+        }
+
+        /* Price Tiers */
+        .price-tiers, .kids-tiers {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .kids-tiers {
+            border-top: 1px solid rgba(139, 90, 60, 0.1);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        .kids-tiers h4 {
+            color: var(--color-chocolate);
+            margin: 0 0 5px;
+        }
+        .tier-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background: #faf6f4;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--color-chocolate-light);
+        }
+        .tier-item strong {
+            color: var(--color-chocolate);
+        }
+        .explain-text {
+            color: var(--color-chocolate-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Rental Box */
+        .rental-info-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(139, 90, 60, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 40px 0;
+        }
+        @media (max-width: 576px) {
+            .rental-info-box {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        .rental-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .rental-text h3 {
+            margin: 0 0 10px;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--color-chocolate);
+        }
+        .rental-text p {
+            margin: 0;
+            color: var(--color-chocolate-light);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Assortment Menu Grid */
+        .assortment-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .menu-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(139, 90, 60, 0.06);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+        .menu-card-header {
+            background: #faf6f4;
+            padding: 20px 25px;
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-chocolate);
+            border-bottom: 1px solid rgba(139, 90, 60, 0.06);
+        }
+        .menu-card.highlight .menu-card-header {
+            background: var(--color-pink-light);
+        }
+        .menu-item-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu-item-list li {
+            padding: 15px 25px;
+            border-bottom: 1px solid rgba(139, 90, 60, 0.04);
+            color: var(--color-chocolate-light);
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .menu-item-list li:last-child {
+            border-bottom: none;
+        }
+        .menu-item-list li .badge {
+            font-size: 0.75rem;
+            background: var(--color-chocolate-light);
+            color: var(--color-white);
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            font-weight: 500;
+        }
+        .menu-item-list li .badge.mini {
+            background: var(--color-pink);
+        }
+        .menu-item-list li .price-add {
+            font-weight: 600;
+            color: var(--color-chocolate);
+        }
+        .menu-item-list li .sub-detail {
+            font-size: 0.85rem;
+            color: #a08070;
+            font-style: italic;
+        }
+
+        .buffet-cta-wrapper {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <span class="preloader-spinner">🎂</span>
+        <p>Zoetze</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+            <a href="index.html#hero" class="nav-logo"><img src="images/logo.jpeg" alt="Zoetze Logo"> <span>Zoetze</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#beschikbaarheid">Beschikbaarheid</a></li>
+                <li><a href="index.html#over">Over</a></li>
+                <li><a href="index.html#assortiment">Assortiment</a></li>
+                <li><a href="index.html#galerij">Galerij</a></li>
+                <li><a href="dessertbuffet.html">Dessertbuffet</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="index.html#contact">Bestellen</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" aria-label="Menu sluiten">&times;</button>
+        <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#beschikbaarheid">Beschikbaarheid</a></li>
+            <li><a href="index.html#over">Over</a></li>
+            <li><a href="index.html#assortiment">Assortiment</a></li>
+            <li><a href="index.html#galerij">Galerij</a></li>
+            <li><a href="dessertbuffet.html">Dessertbuffet</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="index.html#contact">Bestellen</a></li>
+        </ul>
+    </div>
+    <section class="page-section" style="padding-top: 150px; min-height: 80vh;">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Dessertbuffet</h2>
+                <p>Perfect als zoete afsluiter van een familielunch, communie, babyborrel of trouwfeest.</p>
+            </div>
+            
+            <div class="buffet-intro reveal" style="max-width: 800px; margin: 0 auto 50px; text-align: center; font-size: 1.15rem; line-height: 1.8; color: var(--color-chocolate-light);">
+                <p>Stel je dessertbuffet volledig zelf samen: kies jouw favoriete desserts en gebakjes en bepaal het thema of kleurenpalet dat bij jouw feest past. Alles wordt vooraf zorgvuldig afgestemd via mail, zodat alles volledig naar wens verloopt. Op de dag van het feest kan de bestelling afgehaald worden, of bekijken we samen de mogelijkheden voor levering. Ideaal dus voor een stijlvol en praktisch zelfbedieningsbuffet.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="buffet-tabs reveal">
+                <button class="tab-btn active" data-tab="mini-buffet">✨ Mini Buffet (20-40 pers.)</button>
+                <button class="tab-btn" data-tab="maxi-buffet">👑 Maxi Buffet (Vanaf 40 pers.)</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content reveal">
+                <!-- Mini Buffet Panel -->
+                <div class="tab-pane active" id="mini-buffet">
+                    <div class="buffet-details-grid">
+                        <div class="buffet-info-card">
+                            <h3>Mini Buffet Pakket</h3>
+                            <div class="price-tag">€250 <small>voor 20 personen</small></div>
+                            <p class="price-note">+ €10 extra per persoon (tot 40 personen)</p>
+                            <p class="price-note">Kinderen: €5 per persoon (2 kleine desserts p.p.)</p>
+                            
+                            <ul class="buffet-rules-list">
+                                <li>Standaard <strong>4 kleine desserts</strong> per persoon.</li>
+                                <li>Je kiest zelf <strong>1 dessert of gebakje</strong> uit elke categorie.</li>
+                                <li>Voor de kinderen kies je <strong>2 soorten</strong> uit de kinderopties.</li>
+                                <li>Kies je eigen kleurenpalet of thema.</li>
+                            </ul>
+                            
+                            <div class="buffet-cta-wrapper">
+                                <a href="index.html#contact" class="btn-outline">Nu Bestellen</a>
+                            </div>
+                        </div>
+                        
+                        <div class="buffet-structure-card">
+                            <h3>Wat zit er in dit pakket?</h3>
+                            <div class="category-selection-grid">
+                                <div class="selection-item">
+                                    <span class="number">1</span>
+                                    <div>
+                                        <h4>Dessertglaasjes</h4>
+                                        <p>Kies 1 soort (je krijgt 20 stuks)</p>
+                                    </div>
+                                </div>
+                                <div class="selection-item">
+                                    <span class="number">2</span>
+                                    <div>
+                                        <h4>Taart</h4>
+                                        <p>Kies 1 soort (je krijgt 20 individuele taartstukken)</p>
+                                    </div>
+                                </div>
+                                <div class="selection-item">
+                                    <span class="number">3</span>
+                                    <div>
+                                        <h4>Tarteletten</h4>
+                                        <p>Kies 1 soort (je krijgt 20 minitartelettes)</p>
+                                    </div>
+                                </div>
+                                <div class="selection-item">
+                                    <span class="number">4</span>
+                                    <div>
+                                        <h4>Klein gebak</h4>
+                                        <p>Kies 1 soort (je krijgt 20 kleine gebakjes)</p>
+                                    </div>
+                                </div>
+                                <div class="selection-item kids">
+                                    <span class="number">👶</span>
+                                    <div>
+                                        <h4>Kinderopties</h4>
+                                        <p>Kies 2 soorten uit de kinderopties</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maxi Buffet Panel -->
+                <div class="tab-pane" id="maxi-buffet">
+                    <div class="buffet-details-grid">
+                        <div class="buffet-info-card">
+                            <h3>Maxi Buffet Pakket</h3>
+                            <div class="price-tiers">
+                                <div class="tier-item"><span>2 stuks p.p.</span><strong>€10,00</strong></div>
+                                <div class="tier-item"><span>2.5 stuks p.p.</span><strong>€12,50</strong></div>
+                                <div class="tier-item"><span>3 stuks p.p.</span><strong>€14,00</strong></div>
+                                <div class="tier-item"><span>4 stuks p.p.</span><strong>€16,00</strong></div>
+                            </div>
+                            <div class="kids-tiers">
+                                <h4>Kinderen:</h4>
+                                <div class="tier-item"><span>1 stuk p.p.</span><strong>€3,50</strong></div>
+                                <div class="tier-item"><span>2 stuks p.p.</span><strong>€5,00</strong></div>
+                                <div class="tier-item"><span>3 stuks p.p.</span><strong>€7,00</strong></div>
+                            </div>
+                            
+                            <div class="buffet-cta-wrapper" style="margin-top: 30px;">
+                                <a href="index.html#contact" class="btn-outline">Nu Bestellen</a>
+                            </div>
+                        </div>
+                        
+                        <div class="buffet-structure-card">
+                            <h3>Samenstelling & Keuzes</h3>
+                            <p class="explain-text">Een maxibuffet kan besteld worden vanaf 40 personen. 1 stuk komt overeen met een volwaardig dessert (zoals chocomousse of taartpunt).</p>
+                            
+                            <ul class="buffet-rules-list" style="margin-bottom: 25px;">
+                                <li><strong>Maaltijd vooraf?</strong> Reken 1.5 - 2 stuks per persoon.</li>
+                                <li><strong>Volwaardige maaltijd?</strong> Reken 2 - 3 stuks per persoon.</li>
+                                <li><strong>Aantal soorten desserts te kiezen:</strong></li>
+                                <li style="padding-left: 20px; list-style-type: circle;">Vanaf 40 personen: <strong>keuze uit 5</strong> verschillende desserts</li>
+                                <li style="padding-left: 20px; list-style-type: circle;">Vanaf 60 personen: <strong>keuze uit 6</strong> verschillende desserts</li>
+                                <li style="padding-left: 20px; list-style-type: circle;">Vanaf 80 personen: <strong>keuze uit 8</strong> verschillende desserts</li>
+                            </ul>
+                            
+                            <p class="explain-text">Stel zelf presentatiemateriaal, kleurenpalet en thema samen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Presentatiemateriaal Rental Info Box -->
+            <div class="rental-info-box reveal">
+                <div class="rental-icon">🍽️</div>
+                <div class="rental-text">
+                    <h3>Presentatiemateriaal Huren</h3>
+                    <p>Het buffet stel je zelf op, maar indien gewenst kan je presentatiemateriaal huren aan een kleine meerprijs van <strong>€25</strong>. Hiervoor betaal je een waarborg van <strong>€50</strong> (cash bij afhalen of levering). Al het materiaal wordt proper binnen de week teruggebracht, of ik haal het materiaal zelf op (+ €75). Bij het terugbrengen van het materiaal krijg je de borg terug als deze compleet is.</p>
+                </div>
+            </div>
+
+            <!-- Assortment Section -->
+            <div class="assortment-title reveal" style="text-align: center; margin: 80px 0 40px;">
+                <h2 style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-chocolate);">Onze Dessertopties</h2>
+                <p style="color: var(--color-chocolate-light); margin-top: 10px;">Ontdek alle heerlijke mogelijkheden voor uw buffet</p>
+            </div>
+
+            <div class="assortment-menu-grid reveal">
+                <!-- Dessertglaasjes -->
+                <div class="menu-card">
+                    <div class="menu-card-header">🍨 Dessertglaasjes</div>
+                    <ul class="menu-item-list">
+                        <li>Chocolademousse</li>
+                        <li>Witte chocolademousse</li>
+                        <li>Panna cotta</li>
+                        <li>Frambozenbavarois</li>
+                        <li class="maxi-only">Panna Cotta praliné <span class="badge">Enkel Maxi</span></li>
+                    </ul>
+                </div>
+
+                <!-- Taarten -->
+                <div class="menu-card">
+                    <div class="menu-card-header">🍰 Taarten & Gebak</div>
+                    <ul class="menu-item-list">
+                        <li>Cheesecake framboos</li>
+                        <li>Cheesecake speculoos</li>
+                        <li>Chocoladetaart met noten</li>
+                        <li>Tiramisuschotel <span class="sub-detail">(klassiek of hazelnoot)</span></li>
+                        <li>Carré confituur</li>
+                    </ul>
+                </div>
+
+                <!-- Tartelettes -->
+                <div class="menu-card">
+                    <div class="menu-card-header">🥧 Tartelettes</div>
+                    <ul class="menu-item-list">
+                        <li>Framboos-witte chocolade</li>
+                        <li>Caramel-melkchocolade</li>
+                        <li>Caramel-witte chocolade</li>
+                        <li>Aardbei of framboos <span class="sub-detail">(met pudding voor Maxi)</span></li>
+                    </ul>
+                </div>
+
+                <!-- Klein Gebak -->
+                <div class="menu-card">
+                    <div class="menu-card-header">🍪 Klein Gebak</div>
+                    <ul class="menu-item-list">
+                        <li>Cupcake</li>
+                        <li>Cake <span class="sub-detail">(chocolade, appel of natuur)</span></li>
+                        <li>Pizzacake</li>
+                        <li>Brownie</li>
+                        <li class="maxi-only">Brookie <span class="badge">Enkel Maxi</span></li>
+                        <li class="maxi-only">Wafeltjes <span class="badge">Enkel Maxi</span></li>
+                        <li class="maxi-only">Soezen met pudding <span class="badge">Enkel Maxi</span></li>
+                        <li class="maxi-only">Donuts <span class="badge">Enkel Maxi</span></li>
+                        <li class="maxi-only">Cookies <span class="badge">Enkel Maxi</span></li>
+                        <li class="maxi-only">Red velvet cheesecake brownie <span class="badge">Enkel Maxi</span></li>
+                    </ul>
+                </div>
+
+                <!-- Kinderopties -->
+                <div class="menu-card">
+                    <div class="menu-card-header">👶 Kinderopties</div>
+                    <ul class="menu-item-list">
+                        <li>Minicupcake</li>
+                        <li>Wafel op stokje</li>
+                        <li>Cakesicle</li>
+                        <li>Cakepops</li>
+                        <li>Poffertjessaté met fruit</li>
+                    </ul>
+                </div>
+
+                <!-- Eventuele extra's -->
+                <div class="menu-card highlight">
+                    <div class="menu-card-header">✨ Eventuele Extra's</div>
+                    <ul class="menu-item-list">
+                        <li>Macarons <span class="price-add">€2,00 / stuk</span></li>
+                        <li class="mini-only">Donuts <span class="price-add">€3,50 / stuk</span> <span class="badge mini">Enkel Mini</span></li>
+                        <li>Bokkenpootjes <span class="price-add">€2,00 / stuk</span></li>
+                        <li>Themataart <span class="price-add">Prijs op aanvraag</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="gallery-title reveal" style="text-align: center; margin: 80px 0 40px;">
+                <h2 style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-chocolate);">Sfeerimpressie</h2>
+                <p style="color: var(--color-chocolate-light); margin-top: 10px;">Foto's van onze ambachtelijke dessertbuffetten</p>
+            </div>
+
+            <div class="gallery-grid reveal" style="margin-bottom: 60px;">
+                <div class="gallery-item reveal"><img src="images/gallery/general-7/general-7_1.jpg" alt="Dessertbuffet Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/general-7/general-7_2.jpeg" alt="Dessertbuffet Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/general-7/general-7_3.jpeg" alt="Dessertbuffet Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/general-7/general-7_4.jpg" alt="Dessertbuffet Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/general-7/general-7_5.jpeg" alt="Dessertbuffet Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/general-7/general-7_6.jpeg" alt="Dessertbuffet Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/general-7/general-7_7.jpg" alt="Dessertbuffet Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/general-7/general-7_8.jpeg" alt="Dessertbuffet Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/general-7/general-7_9.jpg" alt="Dessertbuffet Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+            </div>
+
+        </div>
+    </section>
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="#hero" class="footer-logo">Zoetze</a>
+                <p class="footer-tagline">Ambachtelijke creaties, op maat gemaakt</p>
+                <div class="footer-links">
+                    <a href="#over">Over</a>
+                    <a href="#assortiment">Assortiment</a>
+                    <a href="#galerij">Galerij</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-legal">
+                    <p>© 2026 Zoetze. Alle rechten voorbehouden.</p>
+                    <p>BTW BE0758581867</p>
+                    <div style="margin-top: 12px; display:flex; justify-content:center; gap: 16px;">
+                        <a href="algemene-voorwaarden.html" style="text-decoration: underline;">Algemene voorwaarden</a>
+                        <a href="privacy-policy.html" style="text-decoration: underline;">Privacy policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Sluiten">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Vorige foto">‹</button>
+        <img id="lightboxImage" src="" alt="Galerij foto">
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Volgende foto">›</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-pane');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    tab.classList.add('active');
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

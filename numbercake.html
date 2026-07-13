@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zoetze — ambachtelijke themataarten, cupcakes, numbercakes en gepersonaliseerd gebak op maat gemaakt in Oudenaarde. Bestel nu voor elke gelegenheid!">
+    <meta name="keywords" content="taarten, cupcakes, numbercakes, dessertbuffet, Oudenaarde, gebak, themataarten, Zoetze">
+    <meta name="author" content="Zoetze">
+    <meta property="og:title" content="Zoetze — Ambachtelijk Gebak uit Oudenaarde">
+    <meta property="og:description" content="Handgemaakte themataarten, cupcakes en dessertbuffetten op maat. Bestel bij Zoetze!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.zoetze.be">
+    <title>Zoetze — Ambachtelijk Gebak | Oudenaarde</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .numbercake-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 50px;
+            align-items: flex-start;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 992px) {
+            .numbercake-showcase {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .numbercake-image-card {
+                aspect-ratio: 1/1;
+            }
+        }
+
+        .numbercake-image-card {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(139, 90, 60, 0.08);
+            aspect-ratio: 4/5;
+        }
+
+        @media (min-width: 993px) {
+            .numbercake-image-card {
+                position: sticky;
+                top: 120px;
+            }
+        }
+
+        .numbercake-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .numbercake-image-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .numbercake-details-card {
+            background: var(--color-white);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(139, 90, 60, 0.06);
+        }
+
+        .numbercake-details-card h3 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--color-chocolate);
+            margin-bottom: 10px;
+        }
+
+        .serving-badge {
+            display: inline-block;
+            background: var(--color-pink-light);
+            color: var(--color-chocolate);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .numbercake-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--color-chocolate-light);
+            margin-bottom: 30px;
+        }
+
+        .price-breakdown {
+            border-top: 1px solid rgba(139, 90, 60, 0.1);
+            padding-top: 25px;
+            margin-top: 25px;
+        }
+
+        .price-breakdown h4 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--color-chocolate);
+            margin-bottom: 15px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(139, 90, 60, 0.05);
+            color: var(--color-chocolate-light);
+            font-size: 1.05rem;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-row.base {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-chocolate);
+            border-bottom: 2px solid rgba(139, 90, 60, 0.1);
+            padding-bottom: 15px;
+            margin-bottom: 10px;
+        }
+
+        .price-row.base .price-val {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .price-row .price-val {
+            color: var(--color-chocolate);
+            font-weight: 600;
+        }
+
+        .price-note-box {
+            background: #faf6f4;
+            border-left: 4px solid var(--color-pink);
+            padding: 15px 20px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 25px 0;
+            font-size: 0.95rem;
+            color: var(--color-chocolate-light);
+            line-height: 1.5;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <span class="preloader-spinner">🎂</span>
+        <p>Zoetze</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+            <a href="index.html#hero" class="nav-logo"><img src="images/logo.jpeg" alt="Zoetze Logo"> <span>Zoetze</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#beschikbaarheid">Beschikbaarheid</a></li>
+                <li><a href="index.html#over">Over</a></li>
+                <li><a href="index.html#assortiment">Assortiment</a></li>
+                <li><a href="index.html#galerij">Galerij</a></li>
+                <li><a href="dessertbuffet.html">Dessertbuffet</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="index.html#contact">Bestellen</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" aria-label="Menu sluiten">&times;</button>
+        <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#beschikbaarheid">Beschikbaarheid</a></li>
+            <li><a href="index.html#over">Over</a></li>
+            <li><a href="index.html#assortiment">Assortiment</a></li>
+            <li><a href="index.html#galerij">Galerij</a></li>
+            <li><a href="dessertbuffet.html">Dessertbuffet</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="index.html#contact">Bestellen</a></li>
+        </ul>
+    </div>
+    <section class="page-section" style="padding-top: 150px; min-height: 80vh;">
+        <div class="container">
+            <div class="numbercake-showcase reveal">
+                <!-- Left Image Card -->
+                <div class="numbercake-image-card">
+                    <img src="images/gallery/numbercake/numbercake_1.jpeg" alt="Number- & Lettercake Zoetze" loading="lazy">
+                </div>
+
+                <!-- Right Details Card -->
+                <div class="numbercake-details-card">
+                    <h3>Number- & Lettercakes</h3>
+                    <span class="serving-badge">Voor 10 à 12 personen</span>
+                    
+                    <p class="numbercake-description">De number- of lettercakes bestaan uit 2 lagen (chocolade)biscuit met chocolade of witte chocoladecrème op basis van mascarpone. De afwerking is volledig naar wens mogelijk in verschillende kleuren.</p>
+                    
+                    <div class="price-breakdown">
+                        <h4>Tarieven & Opties</h4>
+                        <div class="price-row base">
+                            <span>Basisprijs</span>
+                            <span class="price-val">€65,00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Optie verse frambozencoulis of salted caramel swirl</span>
+                            <span class="price-val">+ €5,00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Afwerking met chocolade</span>
+                            <span class="price-val">+ €5,00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Afwerking met macarons</span>
+                            <span class="price-val">+ €5,00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Afwerking met bloemen</span>
+                            <span class="price-val">+ €5,00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Afwerking met rood fruit</span>
+                            <span class="price-val" style="font-weight: 500; font-style: italic;">Seizoensgebonden</span>
+                        </div>
+                    </div>
+
+                    <div class="price-note-box">
+                        <strong>Let op:</strong> De uiteindelijke prijs is afhankelijk van de gekozen decoratie van de bovenlaag.
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <a href="index.html#contact" class="btn-outline" style="display: inline-block;">Nu Bestellen</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Title -->
+            <div class="gallery-title reveal" style="text-align: center; margin: 80px 0 30px;">
+                <h2 style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-chocolate);">Onze Creaties</h2>
+                <p style="color: var(--color-chocolate-light); margin-top: 10px;">Laat je inspireren door eerdere number- en lettercakes</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid reveal" style="margin-bottom: 60px;">
+                <div class="gallery-item reveal"><img src="images/gallery/numbercake/numbercake_1.jpeg" alt="Numbercake Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/numbercake/numbercake_2.jpg" alt="Numbercake Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/numbercake/numbercake_3.jpg" alt="Numbercake Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/numbercake/numbercake_4.jpg" alt="Numbercake Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/numbercake/numbercake_5.jpg" alt="Numbercake Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/numbercake/numbercake_6.jpg" alt="Numbercake Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/numbercake/numbercake_7.jpg" alt="Numbercake Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/numbercake/numbercake_8.jpg" alt="Numbercake Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/numbercake/numbercake_9.jpeg" alt="Numbercake Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+                <div class="gallery-item reveal"><img src="images/gallery/numbercake/numbercake_10.jpg" alt="Numbercake Zoetze" loading="lazy"><div class="gallery-overlay"><span class="gallery-icon">⊕</span></div></div>
+            </div>
+        </div>
+    </section>
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="#hero" class="footer-logo">Zoetze</a>
+                <p class="footer-tagline">Ambachtelijke creaties, op maat gemaakt</p>
+                <div class="footer-links">
+                    <a href="#over">Over</a>
+                    <a href="#assortiment">Assortiment</a>
+                    <a href="#galerij">Galerij</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-legal">
+                    <p>© 2026 Zoetze. Alle rechten voorbehouden.</p>
+                    <p>BTW BE0758581867</p>
+                    <div style="margin-top: 12px; display:flex; justify-content:center; gap: 16px;">
+                        <a href="algemene-voorwaarden.html" style="text-decoration: underline;">Algemene voorwaarden</a>
+                        <a href="privacy-policy.html" style="text-decoration: underline;">Privacy policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Sluiten">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Vorige foto">‹</button>
+        <img id="lightboxImage" src="" alt="Galerij foto">
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Volgende foto">›</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
