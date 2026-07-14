@@ -463,8 +463,7 @@
         // 4. Fetch availability database from GitHub (public fetch)
         async function loadAvailabilityData() {
             try {
-                // Fetch with a cache-buster query param to get fresh data
-                const response = await fetch(`${DATA_FILE_PATH}?t=${Date.now()}`);
+                const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${DATA_FILE_PATH}?t=${Date.now()}`);
                 if (response.ok) {
                     availabilityData = await response.json();
                 } else {

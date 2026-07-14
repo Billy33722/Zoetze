@@ -442,7 +442,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!calendarGrid) return;
 
     try {
-      const response = await fetch(`availability.json?t=${Date.now()}`);
+      const response = await fetch(`https://raw.githubusercontent.com/Billy33722/Zoetze/main/availability.json?t=${Date.now()}`);
       if (!response.ok) throw new Error('Failed to load availability.json');
       const data = await response.json();
 
