@@ -1956,3 +1956,60 @@ ul, ol {
         font-size: 2.2rem;
     }
 }
+
+/* Floating Social Buttons */
+.floating-social {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999;
+}
+
+.floating-social-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(74, 74, 74, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-rose-dark);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(209, 123, 148, 0.15);
+}
+
+.floating-social-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  background-color: var(--color-rose-dark);
+  color: var(--color-white);
+  box-shadow: 0 8px 20px rgba(209, 123, 148, 0.3);
+}
+
+.floating-social-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+@media (max-width: 768px) {
+  .floating-social {
+    bottom: 20px;
+    right: 20px;
+    gap: 10px;
+  }
+  
+  .floating-social-btn {
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 3px 8px rgba(74, 74, 74, 0.15);
+  }
+  
+  .floating-social-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
