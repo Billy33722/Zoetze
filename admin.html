@@ -273,6 +273,57 @@
         .save-status-text.error {
             color: #ef4444;
         }
+
+        /* Responsive Mobile styles */
+        @media (max-width: 768px) {
+            .admin-body {
+                padding: 10px;
+            }
+
+            .dashboard-container {
+                padding: 20px 15px;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+
+            .dashboard-header > div:last-child {
+                display: flex;
+                width: 100%;
+                gap: 10px;
+            }
+
+            .dashboard-header > div:last-child a,
+            .dashboard-header > div:last-child button {
+                flex: 1;
+                text-align: center;
+                font-size: 0.85rem;
+                padding: 8px 10px;
+            }
+
+            .dashboard-title {
+                font-size: 1.5rem;
+            }
+
+            .calendar-month {
+                width: 100% !important;
+                max-width: 310px;
+                padding: 15px !important;
+            }
+
+            .save-banner {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            #save-btn {
+                width: 100% !important;
+            }
+        }
     </style>
 </head>
 <body class="admin-body">
@@ -333,11 +384,12 @@
 
             <!-- Right panel: Interactive Calendar Grid -->
             <div class="calendar-section">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
-                    <button id="prev-month-btn" class="logout-btn" style="padding: 6px 12px;">← Vorige</button>
-                    <h2 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--color-chocolate); text-align: center; margin: 0;">Klik op een dag om de status te wijzigen</h2>
-                    <button id="next-month-btn" class="logout-btn" style="padding: 6px 12px;">Volgende →</button>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 10px;">
+                    <button id="prev-month-btn" class="logout-btn" style="padding: 8px 16px;">← Vorige</button>
+                    <h2 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-chocolate); text-align: center; margin: 0; flex: 1;">Kalender</h2>
+                    <button id="next-month-btn" class="logout-btn" style="padding: 8px 16px;">Volgende →</button>
                 </div>
+                <p style="font-size: 0.9rem; color: var(--color-chocolate-light); text-align: center; margin-bottom: 20px; font-weight: 500;">Klik op een dag om de status te wijzigen</p>
                 <div class="admin-calendar-grid" id="admin-calendar-grid">
                     <!-- Dynamic calendar months will load here -->
                 </div>
