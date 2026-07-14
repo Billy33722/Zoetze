@@ -460,20 +460,29 @@
             passwordInput.value = "";
         }
 
-        // 4. Fetch availability database from GitHub (public fetch)
+        // 4. Fetch availability database from GitHub API (authenticated, instant, no cache)
         async function loadAvailabilityData() {
             try {
-                const response = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/main/${DATA_FILE_PATH}?t=${Date.now()}`);
+                const fetchUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${DATA_FILE_PATH}`;
+                const response = await fetch(fetchUrl, {
+                    headers: {
+                        "Authorization": `token ${decryptedToken}`,
+                        "Accept": "application/vnd.github.v3+json"
+                    }
+                });
+
                 if (response.ok) {
-                    availabilityData = await response.json();
+                    const fileInfo = await response.json();
+                    const decodedContent = decodeURIComponent(escape(atob(fileInfo.content.replace(/\s/g, ''))));
+                    availabilityData = JSON.parse(decodedContent);
                 } else {
-                    console.warn("Could not load availability.json, initializing empty template.");
+                    console.warn("Could not load availability.json via API, initializing empty template.");
                     availabilityData = { message: "", availability: {} };
                 }
                 warningMessageInput.value = availabilityData.message || "";
                 renderCalendars();
             } catch (e) {
-                console.error("Error fetching database file:", e);
+                console.error("Error fetching database file via API:", e);
                 renderCalendars();
             }
         }
