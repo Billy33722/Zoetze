@@ -441,11 +441,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextMonthBtn = document.getElementById('next-month-btn');
     if (!calendarGrid) return;
 
-    try {
-      const response = await fetch(`availability.json?t=${Date.now()}`);
-      if (!response.ok) throw new Error('Failed to load availability.json');
-      const data = await response.json();
+    let data = null;
 
+    try {
+      // 1. Try to fetch from GitHub API for INSTANT, non-cached updates
+      const apiResponse = await fetch('https://api.github.com/repos/Billy33722/Zoetze/contents/availability.json');
+      if (apiResponse.ok) {
+        const fileInfo = await apiResponse.json();
+        const decodedContent = decodeURIComponent(escape(atob(fileInfo.content.replace(/\s/g, ''))));
+        data = JSON.parse(decodedContent);
+      } else {
+        throw new Error('API request failed');
+      }
+    } catch (e) {
+      console.warn('GitHub API failed or rate limited, falling back to local file:', e);
+      try {
+        // 2. Fallback to local availability.json file
+        const fallbackResponse = await fetch(`availability.json?t=${Date.now()}`);
+        if (fallbackResponse.ok) {
+          data = await fallbackResponse.json();
+        }
+      } catch (err) {
+        console.error('Fallback fetch failed:', err);
+      }
+    }
+
+    if (!data) {
+      console.log('Using default hardcoded calendar.');
+      return; // Keep fallback layout
+    }
+
+    try {
       const availability = data.availability || {};
       const customMessage = data.message || "";
 
@@ -495,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     } catch (err) {
-      console.error('Error loading availability database, keeping fallback:', err);
+      console.error('Error rendering calendar:', err);
     }
   }
 
