@@ -438,54 +438,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!calendarGrid) return;
 
     try {
-      const configResponse = await fetch('config.json');
-      if (!configResponse.ok) throw new Error('Failed to load config.json');
-      const config = await configResponse.json();
+      const response = await fetch(`availability.json?t=${Date.now()}`);
+      if (!response.ok) throw new Error('Failed to load availability.json');
+      const data = await response.json();
 
-      const calendarId = config.googleCalendarId ? config.googleCalendarId.trim() : '';
-      const apiKey = config.googleApiKey ? config.googleApiKey.trim() : '';
-      
-      if (!calendarId || !apiKey) {
-        console.log('Google Calendar configuration missing, using fallback calendar.');
-        return;
-      }
+      const availability = data.availability || {};
+      const customMessage = data.message || "";
 
       const now = new Date();
-      // Calculate timeMin as start of current month in UTC
-      const timeMin = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
-
-      const apiUrl = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${apiKey}&timeMin=${encodeURIComponent(timeMin)}&singleEvents=true&maxResults=250`;
-      const apiResponse = await fetch(apiUrl);
-      if (!apiResponse.ok) throw new Error('Failed to fetch Google Calendar events');
-      const data = await apiResponse.json();
-
-      const availability = {};
-      let customMessage = "";
-
-      if (data.items) {
-        data.items.forEach(event => {
-          const title = event.summary ? event.summary.trim() : '';
-          const lowerTitle = title.toLowerCase();
-
-          if (lowerTitle.startsWith('bericht:')) {
-            customMessage = title.substring(8).trim();
-          } else if (lowerTitle === 'volzet' || lowerTitle === 'laatste plekje' || lowerTitle === 'oranje') {
-            const start = event.start;
-            if (start) {
-              let dateStr = '';
-              if (start.date) {
-                dateStr = start.date; // YYYY-MM-DD
-              } else if (start.dateTime) {
-                dateStr = start.dateTime.substring(0, 10); // YYYY-MM-DD
-              }
-              if (dateStr) {
-                availability[dateStr] = lowerTitle;
-              }
-            }
-          }
-        });
-      }
-
       let currentYear = now.getFullYear();
       let currentMonth = now.getMonth();
       let calendarHTML = "";
@@ -502,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     } catch (err) {
-      console.error('Error loading Google Calendar events, keeping fallback:', err);
+      console.error('Error loading availability database, keeping fallback:', err);
     }
   }
 
