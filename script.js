@@ -497,7 +497,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
+      let csvUrl = '';
+      if (sheetId.startsWith('e/')) {
+        csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/pub?output=csv`;
+      } else {
+        csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
+      }
       const csvResponse = await fetch(csvUrl);
       if (!csvResponse.ok) throw new Error('Failed to fetch calendar CSV');
       const csvText = await csvResponse.text();
