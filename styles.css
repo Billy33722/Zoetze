@@ -2013,3 +2013,20 @@ ul, ol {
     height: 18px;
   }
 }
+
+.calendar-nav-btn {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-rose);
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  color: var(--color-chocolate);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+.calendar-nav-btn:hover {
+  background-color: var(--color-cream);
+  border-color: var(--color-rose-dark);
+}

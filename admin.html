@@ -298,7 +298,10 @@
                 <span style="font-family: var(--font-brand); font-size: 2.5rem; color: var(--color-rose-dark);">Zoetze</span>
                 <h1 class="dashboard-title">Beheerpaneel</h1>
             </div>
-            <button id="logout-btn" class="logout-btn">Uitloggen</button>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <a href="index.html" class="logout-btn" style="text-decoration: none; display: inline-block;">Terug naar website</a>
+                <button id="logout-btn" class="logout-btn">Uitloggen</button>
+            </div>
         </div>
 
         <div class="dashboard-grid">
@@ -330,7 +333,11 @@
 
             <!-- Right panel: Interactive Calendar Grid -->
             <div class="calendar-section">
-                <h2 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--color-chocolate); text-align: center;">Klik op een dag om de status te wijzigen</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+                    <button id="prev-month-btn" class="logout-btn" style="padding: 6px 12px;">← Vorige</button>
+                    <h2 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--color-chocolate); text-align: center; margin: 0;">Klik op een dag om de status te wijzigen</h2>
+                    <button id="next-month-btn" class="logout-btn" style="padding: 6px 12px;">Volgende →</button>
+                </div>
                 <div class="admin-calendar-grid" id="admin-calendar-grid">
                     <!-- Dynamic calendar months will load here -->
                 </div>
@@ -362,6 +369,7 @@
         let availabilityData = { message: "", availability: {} };
         let selectedDateKey = null;
         let selectedDayElement = null;
+        let calendarStartMonthOffset = 0;
 
         // Elements
         const loginContainer = document.getElementById('login-container');
@@ -479,14 +487,13 @@
             ];
 
             const now = new Date();
-            let currentYear = now.getFullYear();
-            let currentMonth = now.getMonth();
             let html = "";
 
-            // Render 5 months
-            for (let i = 0; i < 5; i++) {
-                let m = (currentMonth + i) % 12;
-                let y = currentYear + Math.floor((currentMonth + i) / 12);
+            // Render 3 months starting from now + calendarStartMonthOffset
+            for (let i = 0; i < 3; i++) {
+                const viewDate = new Date(now.getFullYear(), now.getMonth() + calendarStartMonthOffset + i, 1);
+                const m = viewDate.getMonth();
+                const y = viewDate.getFullYear();
 
                 const daysInMonth = new Date(y, m + 1, 0).getDate();
                 const startDay = new Date(y, m, 1).getDay();
@@ -632,6 +639,24 @@
             decryptedToken = "";
             showLogin();
         });
+
+        // Prev/Next month navigation
+        const prevMonthBtn = document.getElementById('prev-month-btn');
+        const nextMonthBtn = document.getElementById('next-month-btn');
+
+        if (prevMonthBtn) {
+            prevMonthBtn.addEventListener('click', () => {
+                calendarStartMonthOffset--;
+                renderCalendars();
+            });
+        }
+
+        if (nextMonthBtn) {
+            nextMonthBtn.addEventListener('click', () => {
+                calendarStartMonthOffset++;
+                renderCalendars();
+            });
+        }
 
         statusBtns.vrij.addEventListener('click', () => changeStatus('vrij'));
         statusBtns.laatste.addEventListener('click', () => changeStatus('laatste plekje'));

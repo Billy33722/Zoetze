@@ -432,9 +432,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return html;
   }
 
+  let calendarStartMonthOffset = 0;
+
   async function initAvailabilityCalendar() {
     const calendarGrid = document.getElementById('calendar-grid');
     const calendarMessage = document.getElementById('calendar-message');
+    const prevMonthBtn = document.getElementById('prev-month-btn');
+    const nextMonthBtn = document.getElementById('next-month-btn');
     if (!calendarGrid) return;
 
     try {
@@ -445,20 +449,49 @@ document.addEventListener('DOMContentLoaded', () => {
       const availability = data.availability || {};
       const customMessage = data.message || "";
 
-      const now = new Date();
-      let currentYear = now.getFullYear();
-      let currentMonth = now.getMonth();
-      let calendarHTML = "";
+      function renderHomepageCalendars() {
+        const now = new Date();
+        let calendarHTML = "";
 
-      for (let i = 0; i < 5; i++) {
-        let m = (currentMonth + i) % 12;
-        let y = currentYear + Math.floor((currentMonth + i) / 12);
-        calendarHTML += generateMonthHTML(y, m, availability);
+        // Generate 3 months starting from now + calendarStartMonthOffset
+        for (let i = 0; i < 3; i++) {
+          const viewDate = new Date(now.getFullYear(), now.getMonth() + calendarStartMonthOffset + i, 1);
+          let m = viewDate.getMonth();
+          let y = viewDate.getFullYear();
+          calendarHTML += generateMonthHTML(y, m, availability);
+        }
+
+        calendarGrid.innerHTML = calendarHTML;
+        if (calendarMessage) {
+          calendarMessage.textContent = customMessage || "Beschikbaarheidskalender";
+        }
+
+        // Disable/enable prev button
+        if (prevMonthBtn) {
+          prevMonthBtn.disabled = (calendarStartMonthOffset <= 0);
+          prevMonthBtn.style.opacity = (calendarStartMonthOffset <= 0) ? '0.5' : '1';
+          prevMonthBtn.style.cursor = (calendarStartMonthOffset <= 0) ? 'not-allowed' : 'pointer';
+        }
       }
 
-      calendarGrid.innerHTML = calendarHTML;
-      if (calendarMessage) {
-        calendarMessage.textContent = customMessage || "Beschikbaarheidskalender";
+      // Initial render
+      renderHomepageCalendars();
+
+      // Listeners
+      if (prevMonthBtn) {
+        prevMonthBtn.addEventListener('click', () => {
+          if (calendarStartMonthOffset > 0) {
+            calendarStartMonthOffset--;
+            renderHomepageCalendars();
+          }
+        });
+      }
+
+      if (nextMonthBtn) {
+        nextMonthBtn.addEventListener('click', () => {
+          calendarStartMonthOffset++;
+          renderHomepageCalendars();
+        });
       }
 
     } catch (err) {
