@@ -384,59 +384,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ----------------------------------------------------------
-     13. DYNAMIC GOOGLE SHEETS CALENDAR
+     13. DYNAMIC GOOGLE CALENDAR
   ---------------------------------------------------------- */
-  function parseCSV(text) {
-    const lines = [];
-    let row = [""];
-    let inQuotes = false;
-
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-      const nextChar = text[i + 1];
-
-      if (char === '"') {
-        if (inQuotes && nextChar === '"') {
-          row[row.length - 1] += '"';
-          i++;
-        } else {
-          inQuotes = !inQuotes;
-        }
-      } else if (char === ',' && !inQuotes) {
-        row.push("");
-      } else if ((char === '\r' || char === '\n') && !inQuotes) {
-        if (char === '\r' && nextChar === '\n') {
-          i++;
-        }
-        lines.push(row);
-        row = [""];
-      } else {
-        row[row.length - 1] += char;
-      }
-    }
-    if (row.length > 1 || row[0] !== "") {
-      lines.push(row);
-    }
-    return lines;
-  }
-
-  function parseDate(str) {
-    if (!str) return null;
-    let match = str.trim().match(/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})$/);
-    if (match) {
-      const day = parseInt(match[1], 10);
-      const month = parseInt(match[2], 10) - 1;
-      const year = parseInt(match[3], 10);
-      return new Date(year, month, day);
-    }
-    match = str.trim().match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$/);
-    if (match) {
-      const year = parseInt(match[1], 10);
-      const month = parseInt(match[2], 10) - 1;
-      const day = parseInt(match[3], 10);
-      return new Date(year, month, day);
-    }
-    return null;
+  function padZero(num) {
+    return num.toString().padStart(2, '0');
   }
 
   function generateMonthHTML(year, monthIndex, availability) {
@@ -464,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     for (let d = 1; d <= daysInMonth; d++) {
-      const dateKey = `${year}-${monthIndex}-${d}`;
+      const dateKey = `${year}-${padZero(monthIndex + 1)}-${padZero(d)}`;
       const status = availability[dateKey] || 'vrij';
 
       let bg = '#4ade80';
@@ -491,43 +442,50 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!configResponse.ok) throw new Error('Failed to load config.json');
       const config = await configResponse.json();
 
-      const sheetId = config.googleSheetId ? config.googleSheetId.trim() : '';
-      if (!sheetId) {
-        console.log('Google Sheet ID not configured, using fallback calendar.');
+      const calendarId = config.googleCalendarId ? config.googleCalendarId.trim() : '';
+      const apiKey = config.googleApiKey ? config.googleApiKey.trim() : '';
+      
+      if (!calendarId || !apiKey) {
+        console.log('Google Calendar configuration missing, using fallback calendar.');
         return;
       }
 
-      let csvUrl = '';
-      if (sheetId.startsWith('e/')) {
-        csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/pub?output=csv`;
-      } else {
-        csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
-      }
-      const csvResponse = await fetch(csvUrl);
-      if (!csvResponse.ok) throw new Error('Failed to fetch calendar CSV');
-      const csvText = await csvResponse.text();
+      const now = new Date();
+      // Calculate timeMin as start of current month in UTC
+      const timeMin = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
 
-      const csvLines = parseCSV(csvText);
+      const apiUrl = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${apiKey}&timeMin=${encodeURIComponent(timeMin)}&singleEvents=true&maxResults=250`;
+      const apiResponse = await fetch(apiUrl);
+      if (!apiResponse.ok) throw new Error('Failed to fetch Google Calendar events');
+      const data = await apiResponse.json();
+
       const availability = {};
       let customMessage = "";
 
-      csvLines.forEach(row => {
-        if (!row || row.length < 2) return;
-        const key = row[0].trim().toLowerCase();
-        const val = row[1].trim();
+      if (data.items) {
+        data.items.forEach(event => {
+          const title = event.summary ? event.summary.trim() : '';
+          const lowerTitle = title.toLowerCase();
 
-        if (key === 'bericht') {
-          customMessage = val;
-        } else {
-          const dateObj = parseDate(row[0]);
-          if (dateObj) {
-            const dateStr = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDate()}`;
-            availability[dateStr] = val.toLowerCase();
+          if (lowerTitle.startsWith('bericht:')) {
+            customMessage = title.substring(8).trim();
+          } else if (lowerTitle === 'volzet' || lowerTitle === 'laatste plekje' || lowerTitle === 'oranje') {
+            const start = event.start;
+            if (start) {
+              let dateStr = '';
+              if (start.date) {
+                dateStr = start.date; // YYYY-MM-DD
+              } else if (start.dateTime) {
+                dateStr = start.dateTime.substring(0, 10); // YYYY-MM-DD
+              }
+              if (dateStr) {
+                availability[dateStr] = lowerTitle;
+              }
+            }
           }
-        }
-      });
+        });
+      }
 
-      const now = new Date();
       let currentYear = now.getFullYear();
       let currentMonth = now.getMonth();
       let calendarHTML = "";
@@ -544,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     } catch (err) {
-      console.error('Error loading Google Sheet calendar, keeping fallback:', err);
+      console.error('Error loading Google Calendar events, keeping fallback:', err);
     }
   }
 
